@@ -24,6 +24,12 @@ public:
   Table():rowIndex_(-1){ }
   Table(const Table &from):table_(from.table_),rowIndex(from.rowindex_){}
   ~Table(){}
+  const Table &operator=(const Table& from)
+  {
+    table_ = from.table_;
+    rowIndex_ = from.rowIndex_;
+    return *this;
+  }
 private:
   TableType table_;
   int rowIndex_;
