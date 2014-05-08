@@ -30,6 +30,13 @@ public:
     rowIndex_ = from.rowIndex_;
     return *this;
   }
+
+  int fieldCount() const
+  {
+    if(!table_.empty())
+      return table_[0].size();
+    return 0;
+  }
 private:
   TableType table_;
   int rowIndex_;
