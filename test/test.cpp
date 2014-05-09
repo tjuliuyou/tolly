@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include "../type/table.hpp"
 using namespace std;
 
 int main()
