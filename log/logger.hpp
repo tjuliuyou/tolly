@@ -1,6 +1,19 @@
 #ifndef TOLLY_LOGGER_HPP_
 #define TOLLY_LOGGER_HPP_
-
+/*********1********2********3********4********5********6********7********
+**
+**  Project:  $(project)
+**
+**  Author:   Sven Liu
+**  Email:    tjuliuyou@gmail.com
+**  Date:
+**  Comments: c++ -g -std=c++11 -Wall -DBOOST_LOG_DYN_LINK -o ./test.o -c
+**           ./test.cc
+**           c++ -g -std=c++11 ./test.o -o test -lpthread -lboost_log
+**           -lboost_system -lboost_thread -lboost_filesystem
+**
+*------------------------------------------------------------------------
+************************************************************************/
 #include <boost/shared_array.hpp>
 #include <boost/make_shared.hpp>
 #include <boost/thread/thread.hpp>
@@ -32,18 +45,18 @@ namespace attrs = boost::log::attributes;
 
 enum sign_severity_level {
   normal,
-  notification,
+  debug,
   warning,
   error,
   critical
 };
 
-void InitLog() {
+inline void InitLog() {
   typedef sinks::asynchronous_sink<sinks::text_ostream_backend> TextSink;
 
   // init sink1
   boost::shared_ptr<sinks::text_ostream_backend> backend1 = boost::make_shared<sinks::text_ostream_backend>();
-  backend1->add_stream(boost::shared_ptr<std::ostream>(new std::ofstream("sign.log")));
+  backend1->add_stream(boost::shared_ptr<std::ostream>(new std::ofstream("logs/test.log")));
   boost::shared_ptr<TextSink> sink1(new TextSink(backend1));
   sink1->set_formatter (
    expr::format("[%1%]<%2%>(%3%): %4%")
@@ -58,7 +71,7 @@ void InitLog() {
   // init sink2
   boost::shared_ptr<sinks::text_ostream_backend> backend2 = boost::make_shared<sinks::text_ostream_backend>();
   backend2->auto_flush(true);
-  backend2->add_stream(boost::shared_ptr<std::ostream>(new std::ofstream("sign.csv")));
+  backend2->add_stream(boost::shared_ptr<std::ostream>(new std::ofstream("logs/test.csv")));
   boost::shared_ptr<TextSink> sink2(new TextSink(backend2));
   sink2->set_formatter (
    expr::format("%1%,%2%,%3%")

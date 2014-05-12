@@ -33,7 +33,16 @@
 		<Compiler>
 			<Add option="-Weverything" />
 			<Add option="-fexceptions" />
+			<Add option="-DBOOST_LOG_DYN_LINK" />
 		</Compiler>
+		<Linker>
+			<Add option="-lpthread" />
+			<Add library="libboost_thread.a" />
+			<Add library="libboost_filesystem.a" />
+			<Add library="libboost_system.a" />
+			<Add library="libboost_log.a" />
+		</Linker>
+		<Unit filename="log/logger.hpp" />
 		<Unit filename="test/test.cpp" />
 		<Unit filename="type/table.hpp" />
 		<Extensions>
