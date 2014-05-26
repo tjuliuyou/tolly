@@ -42,6 +42,9 @@
 			<Add library="libboost_system.a" />
 			<Add library="libboost_log.a" />
 		</Linker>
+		<Unit filename="base/hexstring.hpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="log/logger.hpp" />
 		<Unit filename="test/test.cpp" />
 		<Unit filename="type/table.hpp" />
