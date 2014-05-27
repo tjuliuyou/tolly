@@ -86,6 +86,16 @@ inline void InitLog() {
   logging::core::get()->add_global_attribute("ThreadID", attrs::current_thread_id());
 }
 BOOST_LOG_INLINE_GLOBAL_LOGGER_DEFAULT(my_logger, src::severity_logger_mt<sign_severity_level>)
+
+class Logger : boost::noncopyable
+{
+public:
+  Logger(){InitLog();src::severity_logger_mt<sign_severity_level>& lg = my_logger::get();}
+  ~Logger(){logging::core::get()->remove_all_sinks();}
+private:
+
+};
+
 } //namespace
 
 #endif // TOLLY_LOGGER_HPP_

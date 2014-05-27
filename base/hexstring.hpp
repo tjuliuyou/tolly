@@ -1,6 +1,7 @@
 #ifndef TOLLY_HEX_STRING_HPP_
 #define TOLLY_HEX_STRING_HPP_
-
+#include <sstream>
+#include <string>
 namespace tolly {
 // 十六进制的字符和数字对应表
 const char hexNum[128] = {
@@ -17,12 +18,12 @@ const char hexStr[] = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','
 
 
 template< typename T >
-std::string int_to_hex( T i )
+std::string inline numToHex(T i)
 {
   std::stringstream stream;
-  stream << "0x"
-         << std::setfill ('0') << numeric_limits<your_type>::digits/4
-         << std::hex << i;
+  stream << "0x"<< std::hex << i;
+         //<< std::setfill ('0') << std::numeric_limits<T>::digits/4
+
   return stream.str();
 }
 
