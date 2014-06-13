@@ -18,15 +18,25 @@ const char hexStr[] = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','
 
 
 template< typename T >
-std::string inline numToHex(T i)
-{
+inline std::string  numToHex(T i) {
+	std::stringstream stream;
+	stream << std::setfill ('0') << std::setw(std::numeric_limits<T>::digits/4)
+	       << std::hex << i;
+	return stream.str();
+	}
+
+inline std::string  timeToHex(long long i) {
+	std::stringstream stream;
+	stream << std::hex << i;
+	return stream.str();
+	}
+inline long long HexToLL(std::string &s) {
+  long long r;
   std::stringstream stream;
-  stream << "0x"<< std::hex << i;
-         //<< std::setfill ('0') << std::numeric_limits<T>::digits/4
-
-  return stream.str();
+  stream <<std::hex << s;
+  stream >> r;
+  return r;
 }
-
 } //namespace
 
 #endif // TOLLY_HEX_STRING_HPP_

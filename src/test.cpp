@@ -3,7 +3,7 @@
 #include <iomanip>
 #include <limits>
 //#include "../type/table.hpp"
-#include "../base/hexstring.hpp"
+#include "base/hexstring.hpp"
 //#include "logger.hpp"
 
 using namespace std;
@@ -24,19 +24,25 @@ int main()
 //    return 0;
 
   long long now = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+  const string hexprfix("0x");
 
   std::cout<<"double: "<<now<<std::endl;
 
   string n= numToHex(now);
-
   cout<<"string: "<<n<<endl;
+  cout<<"time: "<<timeToHex(now)<<endl;
+  string hx=timeToHex(now);
+  auto a=HexToLL(hx);
+  cout<<a<<endl;
 
-  int a = 1;
-  std::cout<<"int: "<<a<<std::endl;
-   n= numToHex(a);
-   cout<<"string: "<<n<<endl;
-   cout<<std::hex<<a<<endl;
+  long long nowstamp = std::chrono::duration_cast<std::chrono::milliseconds>
+      (std::chrono::system_clock::duration::max()-std::chrono::system_clock::now().time_since_epoch()).count();
+  std::cout<<"nowstamp: "<<nowstamp<<std::endl;
+  string ns= numToHex(nowstamp);
+  cout<<"string: "<<ns<<endl;
 
+
+  cout<<nowstamp-now<<endl;
   return 0;
 
 
