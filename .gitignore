@@ -22,3 +22,6 @@
 
 # dir
 build
+
+# file
+*.sublime*
