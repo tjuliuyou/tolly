@@ -37,6 +37,17 @@ inline long long HexToLL(std::string &s) {
   stream >> r;
   return r;
 }
+
+inline std::string getTimeString() {
+	std::string r;
+	auto today = std::chrono::system_clock::now();
+	auto tt = std::chrono::system_clock::to_time_t(today);
+	std::stringstream stream;
+	stream << tt;
+	stream >> r;
+	return r;
+}
+
 } //namespace
 
 #endif // TOLLY_HEX_STRING_HPP_
